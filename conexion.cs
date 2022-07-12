@@ -1,4 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿// AUTHOR: ALICEEILISH
+
+using System.Data.SqlClient;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using BarcodeLib;
@@ -136,7 +138,7 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray11[100]), 200f, 240f, 0); // barcode
 
-            // cambair los valores de los arreglos para no crear conflicto de espacios
+            // cambiar los valores de los arreglos para no crear conflicto de espacios
 
             //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100]), 200.465f, 293.465f, 0); //
             //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //

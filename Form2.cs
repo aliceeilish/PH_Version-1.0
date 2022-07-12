@@ -9,7 +9,7 @@ namespace PH_Version_1._0
         {
             InitializeComponent();
         }
-
+        SqlConnection cadena_conexion = new SqlConnection(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DB_TIENDASDAKA_PROD;Data Source=SERV-SAP\SRVSAP2012");
         private void Form2_Load(object sender, EventArgs e)
         {
             // --------------------------------------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ namespace PH_Version_1._0
             {
                 query01 = n.funcion_ui();
             }
-            SqlConnection cadena_conexion = new SqlConnection(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DB_TIENDASDAKA_PROD;Data Source=SERV-SAP\SRVSAP2012");
+          
             SqlDataAdapter adapter = new SqlDataAdapter(@"select ART.ItemCode, ART.ItemName, ART.FirmCode, ART.FirmName, U_DK_GARANTIA, isNull(ART.CodeBars,0), PRE.PriceList1, PRE.ListaName1, PRE.Price1, PRE.PriceList2, PRE.ListaName2, PRE.Price2, ART.Name from
 (select A.ItemCode, A.ItemName, A.FirmCode, M.FirmName, A.U_DK_GARANTIA, A.CodeBars, F.name from OITM A 
 join OMRC M on A.FirmCode = M.FirmCode
@@ -128,11 +128,56 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
           //  conexion n = new conexion();
            // n.funcion_busquedaDinamica();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cadena_conexion.Open();
+
+                SqlCommand cmd = cadena_conexion.CreateCommand();
+
+               // string n = variable_n.n;
+
+              //  cmd.CommandText = "select * from [dbo].[@DK_ALMACEN] where (" + n + ") like('%" + textBox1.Text + "%')";
+                cmd.CommandText = "select A.ItemCode, A.ItemName from OITM A WHERE ("+obtener.valor_busqueda+") LIKE ('"+textBox1.Text+"%')";
+
+                DataTable dt = new DataTable();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                adapter.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+
+            }
+            catch
+            {
+
+                textBox1.Text = "";
+            }
+            finally
+            {
+                cadena_conexion.Close();
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                obtener.valor_busqueda = "A.ItemName";
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                obtener.valor_busqueda = "A.ItemCode";
+            }
+        }
     }
 
     class obtener
     {
         public static string valor_obtenido = "NULL";
-        //public static string valor_busqueda = "MICROONDA";
+        public static string valor_busqueda = "A.ItemCode";
     }
 }
