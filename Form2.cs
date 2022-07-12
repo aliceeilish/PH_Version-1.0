@@ -1,4 +1,8 @@
-﻿using System.Data;
+﻿// AUTHOR: ALICEEILISH
+// PROJETS: PROYECTO HABLADORES
+// FECHA: 12/02/2022
+
+using System.Data;
 using System.Data.SqlClient;
 
 namespace PH_Version_1._0

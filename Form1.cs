@@ -1,3 +1,7 @@
+// AUTHOR: ALICEEILISH
+// PROJETS: PROYECTO HABLADORES
+// FECHA: 12/02/2022
+
 namespace PH_Version_1._0
 {
     public partial class Form1 : Form

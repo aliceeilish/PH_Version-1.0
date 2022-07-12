@@ -30,6 +30,20 @@ namespace PH_Version_1._0
         string[] stringArray10 = new string[10000];
         string[] stringArray11 = new string[10000];
 
+        public static string[] stringArray12 = new string[10000];
+        string[] stringArray13 = new string[10000];
+        int[] stringArray14 = new int[10000];
+        string[] stringArray15 = new string[10000];
+        string[] stringArray16 = new string[10000];
+        string[] stringArray17 = new string[10000];
+
+        public static string[] stringArray18 = new string[10000];
+        string[] stringArray19 = new string[10000];
+        int[] stringArray20 = new int[10000];
+        string[] stringArray21 = new string[10000];
+        string[] stringArray22 = new string[10000];
+        string[] stringArray23 = new string[10000];
+
         string query01 = @"SELECT * FROM [dbo].[@DK_ALMACEN]";
         string query = @"select ART.ItemCode, ART.ItemName, ART.FirmCode, ART.FirmName, U_DK_GARANTIA, isNull(ART.CodeBars,0), PRE.PriceList1, PRE.ListaName1, PRE.Price1, PRE.PriceList2, PRE.ListaName2, PRE.Price2, ART.Name from
 (select A.ItemCode, A.ItemName, A.FirmCode, M.FirmName, A.U_DK_GARANTIA, A.CodeBars, F.name from OITM A 
@@ -91,8 +105,22 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     stringArray7[contador] = colum1;
                     stringArray8[contador] = colum2;
                     stringArray9[contador] = colum3;
-                    stringArray10[contador] = colum4;
+                    stringArray10[contador] = columnName;
                     stringArray11[contador] = colum5;
+
+                    stringArray12[contador] = colum;
+                    stringArray13[contador] = colum1;
+                    stringArray14[contador] = colum2;
+                    stringArray15[contador] = colum3;
+                    stringArray16[contador] = columnName;
+                    stringArray17[contador] = colum5;
+
+                    stringArray18[contador] = colum;
+                    stringArray19[contador] = colum1;
+                    stringArray20[contador] = colum2;
+                    stringArray21[contador] = colum3;
+                    stringArray22[contador] = columnName;
+                    stringArray23[contador] = colum5;
                     contador = contador + 1;
                 }
             }
@@ -124,37 +152,34 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
 
             string num1 = n1;
             //int x1 = Int32.Parse(num1);
-    
+            
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x],_id), 283.465f, 600f, 0); // ItemCode
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"+stringArray5[x], _special01Font), 130, 200f, 0); // price1 
-
             
-            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100]), 200.465f, 293.465f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100], _id), 200.465f, 293.465f, 0); //
              ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
              ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
              ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
-            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray11[100]), 200f, 240f, 0); // barcode
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"+stringArray11[100], _special01Font), 130, 200f, 0); // barcode
 
-            // cambiar los valores de los arreglos para no crear conflicto de espacios
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray12[200], _id), 200.465f, 293.465f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray13[200]), 200.465f, 260.465f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray14[200]), 200.465f, 250.400f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray15[200]), 200.465f, 240.350f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray16[200]), 200.465f, 230.340f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"+stringArray17[200], _special01Font), 130, 200f, 0); //barcode
 
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100]), 200.465f, 293.465f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray11[100]), 200f, 240f, 0); //barcode
-
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100]), 200.465f, 293.465f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
-            //ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray11[100]), 200f, 240f, 0); //barcode
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray13[100], _id), 200.465f, 293.465f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray14[100]), 200.465f, 260.465f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray15[100]), 200.465f, 250.400f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray16[100]), 200.465f, 240.350f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray17[100]), 200.465f, 230.340f, 0); //
+            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"+stringArray18[100], _special01Font), 200f, 240f, 0); //barcode
             string variable_x = stringArray5[x];
             //int code_bars = variable_x;
             //string variable_xyz = variable_x.ToString();
