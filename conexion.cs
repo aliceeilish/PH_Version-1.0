@@ -1,4 +1,6 @@
 ﻿// AUTHOR: ALICEEILISH
+// PROJETS: PROYECTO HABLADORES
+// FECHA: 12/02/2022
 
 using System.Data.SqlClient;
 using iTextSharp.text;
