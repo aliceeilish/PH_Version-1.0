@@ -181,39 +181,93 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                 }
             }
 
+            // en este flujo controlamos las paginas y tambien la escritura inteligente
+            decimal reciduo = vuelta / 0.25M;
+            MessageBox.Show("" + reciduo);
             while (vuelta > 0) {
-               // if (vuelta>4)
-                //{
-               // }
-                doc.NewPage();
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+                if (vuelta == -1)
+                {
+                    doc.NewPage();
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
 
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100], _id), 200.465f, 293.465f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"+stringArray11[100], _special01Font), 130, 200f, 0); // barcode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100], _id), 200.465f, 293.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[100], _special01Font), 130, 200f, 0); // barcode
 
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[200], _id), 200.465f, 293.465f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[200]), 230.465f, 260.465f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[200]), 230.465f, 250.400f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[200]), 230.465f, 240.350f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[200]), 230.465f, 230.340f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"+stringArray11[200], _special01Font), 130, 200f, 0); // barcode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[200], _id), 200.465f, 293.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[200]), 230.465f, 260.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[200]), 230.465f, 250.400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[200]), 230.465f, 240.350f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[200]), 230.465f, 230.340f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[200], _special01Font), 130, 200f, 0); // barcode
 
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray13[300], _id), 200.465f, 293.465f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray14[300]), 230.465f, 260.465f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray15[300]), 230.465f, 250.400f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray16[300]), 230.465f, 240.350f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray17[300]), 230.465f, 230.340f, 0); //
-                ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"+stringArray18[300], _special01Font), 200f, 240f, 0); //barcode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray13[300], _id), 200.465f, 293.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray14[300]), 230.465f, 260.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray15[300]), 230.465f, 250.400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray16[300]), 230.465f, 240.350f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray17[300]), 230.465f, 230.340f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray18[300], _special01Font), 200f, 240f, 0); //barcode
 
+                }
+                else if(vuelta > 0)
+                {
+                    doc.NewPage();
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100], _id), 200.465f, 293.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[100], _special01Font), 130, 200f, 0); // barcode
+
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[200], _id), 200.465f, 293.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[200]), 230.465f, 260.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[200]), 230.465f, 250.400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[200]), 230.465f, 240.350f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[200]), 230.465f, 230.340f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[200], _special01Font), 130, 200f, 0); // barcode
+
+                } else if (vuelta == -1)
+                {
+                    doc.NewPage();
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100], _id), 200.465f, 293.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[100], _special01Font), 130, 200f, 0); // barcode
+
+                } else
+                {
+                    doc.NewPage();
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+                }
                 vuelta--;
             }
             
@@ -236,25 +290,6 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
 
             doc.Add(image1);
             doc.Close();
-        }
-
-        public void  funcion_busquedaDinamica()
-        {
-            funcion_conexion();
-            try
-            {
-                SqlCommand cmd = new SqlCommand(@"select A.ItemCode, A.ItemName
-from OITM A 
-WHERE A.ItemCode LIKE '%LB-00000001' ", conexion_server);
-                SqlDataReader reader = cmd.ExecuteReader();
-               // MessageBox.Show(reader.GetString(0).ToString());
-                // MessageBox.Show(reader.GetString(1).ToString());
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("fail searh" + ex.Message);
-            }
         }
 
         public string funcion_busqueda() {
