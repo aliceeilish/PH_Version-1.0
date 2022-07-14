@@ -152,7 +152,6 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
             string num0 = n;
             int x = Int32.Parse(num0);
             // ia para la generación de documentos pdf
-            MessageBox.Show(""+obtner02.valor_habladoresS);
             decimal paginas, hs = obtner02.valor_habladoresS, vuelta = 0;
             if (hs <= 4)
             {
@@ -262,12 +261,12 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                 } else if(reciduo > 0 && reciduo <= 1)
                 {
                     doc.NewPage();
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x]), 260.000f, 660.276f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x]), 141.732f, 749.000f, 0); // ItemName
+                  //  ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); // codebar
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x]), 200.000f, 595.276f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 141.732f, 765.354f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x]), 70f, 670f, 0); // price1
                     reciduo = reciduo - 1;
                 } else if (reciduo < 0)
                 {
@@ -291,7 +290,7 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
             //image1.ScalePercent(50f);
             image1.ScaleAbsoluteWidth(175); // ancho de la imagen;
             image1.ScaleAbsoluteHeight(30); // alto de la imagen;
-            image1.SetAbsolutePosition(100, 100); // posicion de la imagen (x,y);
+            image1.SetAbsolutePosition(200.000f, 620.276f); // posicion de la imagen (x,y);
 
             doc.Add(image1);
             doc.Close();

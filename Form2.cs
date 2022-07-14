@@ -91,14 +91,15 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
                     sb.Append(dataGridView1.SelectedRows[i].Index.ToString());
                     n = dataGridView1.SelectedRows[i].Index.ToString();
                     conexion conexion = new conexion();
+                    hs = selectedRowCount;
+                    obtner02.valor_habladoresS = hs;
                     conexion.funcion_variable_n(n,n1);
                     sb.Append(Environment.NewLine);
                     //
                     // como capturar varias posiciones de un datagridView
                 }
                 sb.Append("Total: " + selectedRowCount.ToString());
-                hs = selectedRowCount;
-                obtner02.valor_habladoresS = hs;
+                
                 MessageBox.Show(sb.ToString(), "Selected Rows");
             }
            
