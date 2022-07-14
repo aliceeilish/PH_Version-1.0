@@ -2,6 +2,8 @@
 // PROJETS: PROYECTO HABLADORES
 // FECHA: 12/02/2022
 
+// OPTIMIZAR CÓDIGO
+
 using System.Data.SqlClient;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -149,9 +151,6 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
 
             string num0 = n;
             int x = Int32.Parse(num0);
-
-            // string num1 = n1;
-
             // ia para la generación de documentos pdf
             decimal paginas, hs = 10, vuelta = 0;
             if (hs <= 4)
@@ -164,7 +163,7 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
 
                 while (paginas > 0)
                 {
-                    if (paginas > 0.25M)
+                    if (paginas > 0.20M)
                     {
                         if (paginas >= 1)
                         {
@@ -172,7 +171,7 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                             paginas = paginas - 1;
                         }
 
-                        if (paginas > 0.25M && paginas < 1)
+                        if (paginas > 0.20M && paginas < 1)
                         {
                             vuelta++;
                             break;
@@ -182,11 +181,11 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
             }
 
             // en este flujo controlamos las paginas y tambien la escritura inteligente
-            decimal reciduo = vuelta / 0.25M;
-            MessageBox.Show("" + reciduo);
+            decimal reciduo = hs;
             while (vuelta > 0) {
-                if (vuelta == -1)
+                if (reciduo > 4 || reciduo == 4)
                 {
+                    // informacion estatica
                     doc.NewPage();
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
@@ -215,9 +214,9 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray16[300]), 230.465f, 240.350f, 0); //
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray17[300]), 230.465f, 230.340f, 0); //
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray18[300], _special01Font), 200f, 240f, 0); //barcode
-
+                    reciduo = reciduo - 4;
                 }
-                else if(vuelta > 0)
+                else if (reciduo == 3)
                 {
                     doc.NewPage();
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
@@ -240,8 +239,9 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[200]), 230.465f, 240.350f, 0); //
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[200]), 230.465f, 230.340f, 0); //
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[200], _special01Font), 130, 200f, 0); // barcode
+                    reciduo = reciduo - 3;
 
-                } else if (vuelta == -1)
+                } else if (reciduo == 2)
                 {
                     doc.NewPage();
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
@@ -257,8 +257,8 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[100], _special01Font), 130, 200f, 0); // barcode
-
-                } else
+                    reciduo = reciduo - 2;
+                } else if(reciduo > 0 && reciduo <= 1)
                 {
                     doc.NewPage();
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
@@ -267,6 +267,10 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+                    reciduo = reciduo - 1;
+                } else if (reciduo < 0)
+                {
+                    break;
                 }
                 vuelta--;
             }

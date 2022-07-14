@@ -21,16 +21,9 @@ namespace PH_Version_1._0
             // --------------------------------------------------------------------------------------------------------------------------------
             comboBox1.Items.Add("Filtrar por nombre");
             comboBox1.Items.Add("Filtrar por código");
-
-            //obtener.valor_busqueda = textBox1.Text;
-            //MessageBox.Show(obtener.valor_busqueda);
-            //comboBox1.SelectedIndex = 0;
-
             // --------------------------------------------------------------------------------------------------------------------------------
             string query01;
             conexion n = new conexion();
-            //string query = n.funcion_ui();
-            // si query cambia, el valor de la tabla también 
             if (comboBox1.SelectedIndex == 0)
             {
                 query01 = n.funcion_busqueda();
@@ -84,6 +77,7 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
         private void button1_Click(object sender, EventArgs e)
         {
             string n,n1 = "";
+           
             Int32 selectedRowCount =
         dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount > 0)
@@ -95,20 +89,16 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
                     sb.Append("Fila: ");
                     sb.Append(dataGridView1.SelectedRows[i].Index.ToString());
                     n = dataGridView1.SelectedRows[i].Index.ToString();
-                   // n1 = dataGridView1.SelectedRows[i].Index.ToString();
                     conexion conexion = new conexion();
                     conexion.funcion_variable_n(n,n1);
                     sb.Append(Environment.NewLine);
                     //
                     // como capturar varias posiciones de un datagridView
                 }
-
                 sb.Append("Total: " + selectedRowCount.ToString());
-                //MessageBox.Show(sb.ToString(), "Selected Rows");
+                MessageBox.Show(sb.ToString(), "Selected Rows");
             }
-            // generar código de barras
-            // string valor_xy = valor_x;
-            // Es necesario qu ela generación del código de barras se realice despues de la conexión
+           
             BarcodeLib.Barcode codeBars = new BarcodeLib.Barcode();
             codeBars.IncludeLabel = false;
             string valor_x = obtener.valor_obtenido;
@@ -119,18 +109,7 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
             SaveFileDialog SaveFileDialog = new SaveFileDialog();
             SaveFileDialog.AddExtension = true;
             SaveFileDialog.Filter = "Image PNG (*.png) | *.png";
-
-            if (SaveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                ImageCodeBars.Save(SaveFileDialog.FileName);
-                SaveFileDialog.RestoreDirectory = true;
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-          //  conexion n = new conexion();
-           // n.funcion_busquedaDinamica();
+            ImageCodeBars.Save(SaveFileDialog.InitialDirectory = @"C:\Users\d.marcano\Desktop\codigo_barras.png");
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -138,26 +117,15 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
             try
             {
                 cadena_conexion.Open();
-
                 SqlCommand cmd = cadena_conexion.CreateCommand();
-
-               // string n = variable_n.n;
-
-              //  cmd.CommandText = "select * from [dbo].[@DK_ALMACEN] where (" + n + ") like('%" + textBox1.Text + "%')";
                 cmd.CommandText = "select A.ItemCode, A.ItemName from OITM A WHERE ("+obtener.valor_busqueda+") LIKE ('"+textBox1.Text+"%')";
-
                 DataTable dt = new DataTable();
-
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-
                 adapter.Fill(dt);
-
                 dataGridView1.DataSource = dt;
-
             }
             catch
             {
-
                 textBox1.Text = "";
             }
             finally
