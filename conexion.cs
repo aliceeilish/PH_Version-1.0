@@ -152,7 +152,8 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
             string num0 = n;
             int x = Int32.Parse(num0);
             // ia para la generación de documentos pdf
-            decimal paginas, hs = 10, vuelta = 0;
+            MessageBox.Show(""+obtner02.valor_habladoresS);
+            decimal paginas, hs = obtner02.valor_habladoresS, vuelta = 0;
             if (hs <= 4)
             {
                 vuelta = 1;

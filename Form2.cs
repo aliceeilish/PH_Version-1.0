@@ -77,6 +77,7 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
         private void button1_Click(object sender, EventArgs e)
         {
             string n,n1 = "";
+            int hs = 0;
            
             Int32 selectedRowCount =
         dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
@@ -96,6 +97,8 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
                     // como capturar varias posiciones de un datagridView
                 }
                 sb.Append("Total: " + selectedRowCount.ToString());
+                hs = selectedRowCount;
+                obtner02.valor_habladoresS = hs;
                 MessageBox.Show(sb.ToString(), "Selected Rows");
             }
            

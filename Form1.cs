@@ -29,4 +29,9 @@ namespace PH_Version_1._0
                 form2.Show();
         }
     }
+
+    class obtner02
+    {
+        public static int valor_habladoresS = 0;
+    }
 }
