@@ -137,7 +137,7 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
 
             // generarPDF
             Document doc = new Document();
-            doc.SetPageSize(new iTextSharp.text.Rectangle(612f, 792f)); // 15x9,5(425.197f, 269.291f) en puntos Tipo graficos | 11x6,5(311.811f,184.252f) en puntos Tipo graficos
+            doc.SetPageSize(iTextSharp.text.PageSize.A4.Rotate()); // 15x9,5(425.197f, 269.291f) en puntos Tipo graficos | 11x6,5(311.811f,184.252f) en puntos Tipo graficos
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@"C:\Users\d.marcano\Desktop\PH_Version_1.0.pdf", FileMode.Create));
             doc.Open();
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
@@ -181,92 +181,172 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
             }
 
             // en este flujo controlamos las paginas y tambien la escritura inteligente
+            iTextSharp.text.Image image1 = iTextSharp.text.Image.GetInstance(@"C:\Users\d.marcano\Desktop\bar_code.png"); // getDirectory
+            iTextSharp.text.Image image2 = iTextSharp.text.Image.GetInstance(@"C:\Users\d.marcano\Desktop\image\LOGO PIDA (1,17x0,9cm).png"); // Logo
+
             decimal reciduo = hs;
             while (vuelta > 0) {
                 if (reciduo > 4 || reciduo == 4)
                 {
-                    // informacion estatica
+                    // Primera posición
                     doc.NewPage();
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x]), 260.000f, 490.276f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x]), 141.732f, 549.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x]), 200.000f, 425.197f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 141.732f, 566.929f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x]), 70f, 470f, 0); // price1 
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
 
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100], _id), 200.465f, 293.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[100], _special01Font), 130, 200f, 0); // barcode
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
 
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[200], _id), 200.465f, 293.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[200]), 230.465f, 260.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[200]), 230.465f, 250.400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[200]), 230.465f, 240.350f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[200]), 230.465f, 230.340f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[200], _special01Font), 130, 200f, 0); // barcode
+                    // Segunda posición
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[100]), 700.732f, 490.276f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[100]), 630.732f, 549.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[100]), 650.000f, 425.197f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[100]), 630.732f, 566.929f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[100]), 510f, 470f, 0); // price1
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(650.732f, 455.276f); // posicion de la imagen (x,y);
 
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray13[300], _id), 200.465f, 293.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray14[300]), 230.465f, 260.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray15[300]), 230.465f, 250.400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray16[300]), 230.465f, 240.350f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray17[300]), 230.465f, 230.340f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray18[300], _special01Font), 200f, 240f, 0); //barcode
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(710.732f, 525.276f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
+
+                    // Tercera posición
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[200]), 260.000f, 100.000f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[200]), 141.732f, 100.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[200]), 200.000f, 100.000f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[200]), 141.732f, 100.000f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[100]), 70f, 100f, 0); // price1
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(200.000f, 100.000f); // posicion de la imagen (x,y);
+
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(250.000f, 100.000f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
+
+                    // Cuarta posición
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[200]), 700.732f, 100.000f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[200]), 630.732f, 100.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[200]), 650.000f, 100.000f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[200]), 630.732f, 100.000f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[100]), 510f, 100.000f, 0); // price1
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(650.732f, 100.000f); // posicion de la imagen (x,y);
+
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(710.732f, 100.000f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
                     reciduo = reciduo - 4;
                 }
                 else if (reciduo == 3)
                 {
+                    // Primera posición
                     doc.NewPage();
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x]), 260.000f, 490.276f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x]), 141.732f, 549.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x]), 200.000f, 425.197f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 141.732f, 566.929f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x]), 70f, 470f, 0); // price1 
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
 
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100], _id), 200.465f, 293.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[100], _special01Font), 130, 200f, 0); // barcode
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
 
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[200], _id), 200.465f, 293.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[200]), 230.465f, 260.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[200]), 230.465f, 250.400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[200]), 230.465f, 240.350f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[200]), 230.465f, 230.340f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[200], _special01Font), 130, 200f, 0); // barcode
+                    // Segunda posición
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[100]), 700.732f, 490.276f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[100]), 630.732f, 549.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[100]), 650.000f, 425.197f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[100]), 630.732f, 566.929f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[100]), 510f, 470f, 0); // price1
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(650.732f, 455.276f); // posicion de la imagen (x,y);
+
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(710.732f, 525.276f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
+
+                    // Tercera posición
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[200]), 260.000f, 100.000f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[200]), 141.732f, 100.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[200]), 200.000f, 100.000f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[200]), 141.732f, 100.000f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[100]), 70f, 100f, 0); // price1
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(200.000f, 100.000f); // posicion de la imagen (x,y);
+
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(250.000f, 100.000f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
                     reciduo = reciduo - 3;
 
                 } else if (reciduo == 2)
                 {
+                    // Primera posición
                     doc.NewPage();
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x], _id), 283.465f, 600f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x], _standardFont), 283.465f, 400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x], _standardFont), 283.465f, 300f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 283.465f, 500f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x], _special01Font), 130, 200f, 0); // 
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x]), 260.000f, 490.276f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x]), 141.732f, 549.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x]), 200.000f, 425.197f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 141.732f, 566.929f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x]), 70f, 470f, 0); // price1 
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
 
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray6[100], _id), 200.465f, 293.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray7[100]), 200.465f, 260.465f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray8[100]), 200.465f, 250.400f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray9[100]), 200.465f, 240.350f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray10[100]), 200.465f, 230.340f, 0); //
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray11[100], _special01Font), 130, 200f, 0); // barcode
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
+
+                    // Segunda posición
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[100]), 700.732f, 490.276f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[100]), 630.732f, 549.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[100]), 650.000f, 425.197f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[100]), 630.732f, 566.929f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[100]), 510f, 470f, 0); // price1
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(650.732f, 455.276f); // posicion de la imagen (x,y);
                     reciduo = reciduo - 2;
                 } else if(reciduo > 0 && reciduo <= 1)
                 {
+                    // Primera posición
                     doc.NewPage();
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x]), 260.000f, 660.276f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x]), 141.732f, 749.000f, 0); // ItemName
-                  //  ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray2[x]), 283.465f, 500f, 0); // codebar
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x]), 200.000f, 595.276f, 0); // D_K.Garantía
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 141.732f, 765.354f, 0); // FirmName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x]), 70f, 670f, 0); // price1
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray[x]), 260.000f, 490.276f, 0); // ItemCode
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray1[x]), 141.732f, 549.000f, 0); // ItemName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray3[x]), 200.000f, 425.197f, 0); // D_K.Garantía
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(stringArray4[x]), 141.732f, 566.929f, 0); // FirmName
+                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$" + stringArray5[x]), 70f, 470f, 0); // price1 
+                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                    image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
                     reciduo = reciduo - 1;
                 } else if (reciduo < 0)
                 {
@@ -284,15 +364,13 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
             //funcion_variable_x(variable_x);
 
             // atributos del PDF
-            //
-            iTextSharp.text.Image image1 = iTextSharp.text.Image.GetInstance(@"C:\Users\d.marcano\Desktop\bar_code.png"); // getDirectory
 
             //image1.ScalePercent(50f);
-            image1.ScaleAbsoluteWidth(175); // ancho de la imagen;
-            image1.ScaleAbsoluteHeight(30); // alto de la imagen;
-            image1.SetAbsolutePosition(200.000f, 620.276f); // posicion de la imagen (x,y);
+           // image1.ScaleAbsoluteWidth(175); // ancho de la imagen;
+           // image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+            //image1.SetAbsolutePosition(200.000f, 620.276f); // posicion de la imagen (x,y);
 
-            doc.Add(image1);
+            //doc.Add(image1);
             doc.Close();
         }
 

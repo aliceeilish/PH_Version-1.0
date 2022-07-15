@@ -33,8 +33,10 @@ namespace PH_Version_1._0
             {
                 query01 = n.funcion_ui();
             }
-          
-            SqlDataAdapter adapter = new SqlDataAdapter(@"select ART.ItemCode, ART.ItemName, ART.FirmCode, ART.FirmName, U_DK_GARANTIA, isNull(ART.CodeBars,0), PRE.PriceList1, PRE.ListaName1, PRE.Price1, PRE.PriceList2, PRE.ListaName2, PRE.Price2, ART.Name from
+
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(@"select ART.ItemCode, ART.ItemName, ART.FirmCode, ART.FirmName, U_DK_GARANTIA, isNull(ART.CodeBars,0), PRE.PriceList1, PRE.ListaName1, PRE.Price1, PRE.PriceList2, PRE.ListaName2, PRE.Price2, ART.Name from
 (select A.ItemCode, A.ItemName, A.FirmCode, M.FirmName, A.U_DK_GARANTIA, A.CodeBars, F.name from OITM A 
 join OMRC M on A.FirmCode = M.FirmCode
 join ITM1 P on A.ItemCode = P.ItemCode
@@ -56,22 +58,27 @@ join OPLN L1 on P.PriceList = L1.ListNum
 where a.SellItem = 'Y' and SUBSTRING(a.itemcode,1,1) = 'L' and P.PriceList = 4) P2
 on P1.ItemCode1 = P2.ItemCode2) PRE
 on ART.ItemCode = PRE.ItemCode", cadena_conexion);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-            this.dataGridView1.Columns["FirmCode"].Visible = false;
-            this.dataGridView1.Columns["FirmName"].Visible = false;
-            this.dataGridView1.Columns["U_DK_GARANTIA"].Visible = false;
-            this.dataGridView1.Columns["Column1"].Visible = false;
-            this.dataGridView1.Columns["PriceList1"].Visible = false;
-            this.dataGridView1.Columns["PriceList2"].Visible = false;
-            this.dataGridView1.Columns["U_DK_GARANTIA"].Visible = false;
-            this.dataGridView1.Columns["Price1"].Visible = false;
-            this.dataGridView1.Columns["Price2"].Visible = false;
-            this.dataGridView1.Columns["Name"].Visible = false;
-            this.dataGridView1.Columns["ListaName1"].Visible = false;
-            this.dataGridView1.Columns["ListaName2"].Visible = false;
-            this.dataGridView1.Columns["ItemName"].Width = 700;
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+                this.dataGridView1.Columns["FirmCode"].Visible = false;
+                this.dataGridView1.Columns["FirmName"].Visible = false;
+                this.dataGridView1.Columns["U_DK_GARANTIA"].Visible = false;
+                this.dataGridView1.Columns["Column1"].Visible = false;
+                this.dataGridView1.Columns["PriceList1"].Visible = false;
+                this.dataGridView1.Columns["PriceList2"].Visible = false;
+                this.dataGridView1.Columns["U_DK_GARANTIA"].Visible = false;
+                this.dataGridView1.Columns["Price1"].Visible = false;
+                this.dataGridView1.Columns["Price2"].Visible = false;
+                this.dataGridView1.Columns["Name"].Visible = false;
+                this.dataGridView1.Columns["ListaName1"].Visible = false;
+                this.dataGridView1.Columns["ListaName2"].Visible = false;
+                this.dataGridView1.Columns["ItemName"].Width = 700;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -104,7 +111,7 @@ on ART.ItemCode = PRE.ItemCode", cadena_conexion);
             }
            
             BarcodeLib.Barcode codeBars = new BarcodeLib.Barcode();
-            codeBars.IncludeLabel = false;
+            codeBars.IncludeLabel = true;
             string valor_x = obtener.valor_obtenido;
             MessageBox.Show(valor_x);
             panel1.BackgroundImage = codeBars.Encode(BarcodeLib.TYPE.CODE128, valor_x, Color.Black, Color.White, 300, 100);

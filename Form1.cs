@@ -13,13 +13,8 @@ namespace PH_Version_1._0
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboBox1.Items.Add("Lista Estadar");
-            //button1.Enabled = false;
-            //if (comboBox1.SelectedText == "Lista Estandar")
-            //{
-              //  button1.Enabled = true;
-            //}
-
+            comboBox1.Items.Add("Lista Estandar");
+            comboBox2.Items.Add("Promo Daka");
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -27,6 +22,11 @@ namespace PH_Version_1._0
                 conexion n = new conexion();
                 Form2 form2 = new Form2();
                 form2.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
         }
     }
 
