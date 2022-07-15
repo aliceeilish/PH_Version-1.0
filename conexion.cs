@@ -25,27 +25,6 @@ namespace PH_Version_1._0
         string[] stringArray4 = new string[10000];
         string[] stringArray5 = new string[10000];
 
-        public static string[] stringArray6 = new string[10000];
-        string[] stringArray7 = new string[10000];
-        int[] stringArray8 = new int[10000];
-        string[] stringArray9 = new string[10000];
-        string[] stringArray10 = new string[10000];
-        string[] stringArray11 = new string[10000];
-
-        public static string[] stringArray12 = new string[10000];
-        string[] stringArray13 = new string[10000];
-        int[] stringArray14 = new int[10000];
-        string[] stringArray15 = new string[10000];
-        string[] stringArray16 = new string[10000];
-        string[] stringArray17 = new string[10000];
-
-        public static string[] stringArray18 = new string[10000];
-        string[] stringArray19 = new string[10000];
-        int[] stringArray20 = new int[10000];
-        string[] stringArray21 = new string[10000];
-        string[] stringArray22 = new string[10000];
-        string[] stringArray23 = new string[10000];
-
         string query01 = @"SELECT * FROM [dbo].[@DK_ALMACEN]";
         string query = @"select ART.ItemCode, ART.ItemName, ART.FirmCode, ART.FirmName, U_DK_GARANTIA, isNull(ART.CodeBars,0), PRE.PriceList1, PRE.ListaName1, PRE.Price1, PRE.PriceList2, PRE.ListaName2, PRE.Price2, ART.Name from
 (select A.ItemCode, A.ItemName, A.FirmCode, M.FirmName, A.U_DK_GARANTIA, A.CodeBars, F.name from OITM A 
@@ -103,26 +82,6 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     stringArray4[contador] = columnName;
                     stringArray5[contador] = colum5;
 
-                    stringArray6[contador] = colum;
-                    stringArray7[contador] = colum1;
-                    stringArray8[contador] = colum2;
-                    stringArray9[contador] = colum3;
-                    stringArray10[contador] = columnName;
-                    stringArray11[contador] = colum5;
-
-                    stringArray12[contador] = colum;
-                    stringArray13[contador] = colum1;
-                    stringArray14[contador] = colum2;
-                    stringArray15[contador] = colum3;
-                    stringArray16[contador] = columnName;
-                    stringArray17[contador] = colum5;
-
-                    stringArray18[contador] = colum;
-                    stringArray19[contador] = colum1;
-                    stringArray20[contador] = colum2;
-                    stringArray21[contador] = colum3;
-                    stringArray22[contador] = columnName;
-                    stringArray23[contador] = colum5;
                     contador = contador + 1;
                 }
             }
@@ -137,20 +96,17 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
 
             // generarPDF
             Document doc = new Document();
-            doc.SetPageSize(iTextSharp.text.PageSize.A4.Rotate()); // 15x9,5(425.197f, 269.291f) en puntos Tipo graficos | 11x6,5(311.811f,184.252f) en puntos Tipo graficos
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@"C:\Users\d.marcano\Desktop\PH_Version_1.0.pdf", FileMode.Create));
+            doc.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@"C:\Users\d.marcano\Desktop\habladores_pruebas.pdf", FileMode.Create));
             doc.Open();
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _specialFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _special01Font = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 18, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _id = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.NORMAL, BaseColor.GREEN);
-            //Paragraph title = new Paragraph();
-            //title.Font = FontFactory.GetFont(FontFactory.TIMES, 20f, BaseColor.BLACK);
-            //title.Add();
-            //doc.Add(title);
 
             string num0 = n;
             int x = Int32.Parse(num0);
+
             // ia para la generación de documentos pdf
             decimal paginas, hs = obtner02.valor_habladoresS, vuelta = 0;
             if (hs <= 4)
@@ -356,21 +312,9 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
             }
             
             string variable_x = stringArray5[x];
-            //int code_bars = variable_x;
-            //string variable_xyz = variable_x.ToString();
 
             // solucion al código de barras
             obtener.valor_obtenido = variable_x;
-            //funcion_variable_x(variable_x);
-
-            // atributos del PDF
-
-            //image1.ScalePercent(50f);
-           // image1.ScaleAbsoluteWidth(175); // ancho de la imagen;
-           // image1.ScaleAbsoluteHeight(30); // alto de la imagen;
-            //image1.SetAbsolutePosition(200.000f, 620.276f); // posicion de la imagen (x,y);
-
-            //doc.Add(image1);
             doc.Close();
         }
 
