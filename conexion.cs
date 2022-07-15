@@ -24,6 +24,7 @@ namespace PH_Version_1._0
         string[] stringArray3 = new string[10000];
         string[] stringArray4 = new string[10000];
         string[] stringArray5 = new string[10000];
+        string[] stringCodeBars = new string[10000];
 
         string query01 = @"SELECT * FROM [dbo].[@DK_ALMACEN]";
         string query = @"select ART.ItemCode, ART.ItemName, ART.FirmCode, ART.FirmName, U_DK_GARANTIA, isNull(ART.CodeBars,0), PRE.PriceList1, PRE.ListaName1, PRE.Price1, PRE.PriceList2, PRE.ListaName2, PRE.Price2, ART.Name from
@@ -81,6 +82,7 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     stringArray3[contador] = colum3;
                     stringArray4[contador] = columnName;
                     stringArray5[contador] = colum5;
+                    stringCodeBars[contador] = colum4; // código de barras
 
                     contador = contador + 1;
                 }
@@ -291,6 +293,12 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     image1.ScaleAbsoluteHeight(30); // alto de la imagen;
                     image1.SetAbsolutePosition(650.732f, 455.276f); // posicion de la imagen (x,y);
                     reciduo = reciduo - 2;
+
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(710.732f, 525.276f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
                 } else if(reciduo > 0 && reciduo <= 1)
                 {
                     // Primera posición
@@ -303,6 +311,12 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                     image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
                     image1.ScaleAbsoluteHeight(30); // alto de la imagen;
                     image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
+
+                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                    image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
+                    doc.Add(image1);
+                    doc.Add(image2);
                     reciduo = reciduo - 1;
                 } else if (reciduo < 0)
                 {
@@ -310,10 +324,10 @@ on ART.ItemCode = PRE.ItemCode"; // --------------------------------------------
                 }
                 vuelta--;
             }
-            
-            string variable_x = stringArray5[x];
+
 
             // solucion al código de barras
+            string variable_x = stringCodeBars[x];
             obtener.valor_obtenido = variable_x;
             doc.Close();
         }
