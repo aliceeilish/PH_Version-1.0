@@ -15,23 +15,21 @@ namespace PH_Version_1._0
         {
             comboBox1.Items.Add("Lista Estandar");
             comboBox2.Items.Add("Promo Daka");
+            button1.Enabled = false;
         }
         private void button1_Click(object sender, EventArgs e)
         {
-                // ---------------------------------------------------------------------------------------------------------------------------
-                conexion n = new conexion();
-                Form2 form2 = new Form2();
-                form2.Show();
+            conexion n = new conexion();
+            Form2 form2 = new Form2();
+            form2.Show();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+            if (comboBox1.SelectedIndex == 0 )
+            {
+                button1.Enabled = true;
+            }
         }
-    }
-
-    class obtner02
-    {
-        public static int valor_habladoresS = 0;
     }
 }
