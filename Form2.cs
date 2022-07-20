@@ -151,6 +151,8 @@ namespace PH_Version_1._0
                 }
             }
 
+            // lograr cambiar el valor dinamicamente de x desde una lista
+
             //int i = 0;
             //foreach (var valor in lista_dinamica)
             //{
@@ -175,7 +177,6 @@ namespace PH_Version_1._0
                 if (reciduo > 4 || reciduo == 4)
                 {
                     // 1
-                    bandera = "";
                     doc.NewPage();
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[x]), 260.000f, 490.276f, 0); // ItemCode
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[x]), 141.732f, 549.000f, 0); // ItemName
@@ -191,12 +192,6 @@ namespace PH_Version_1._0
                     image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
                     doc.Add(image1);
                     doc.Add(image2);
-                    bandera = "1";
-
-                    if(bandera == "1") // cambiar valor dinamico
-                    {
-                        x = 100;
-                    }
 
                     // 2
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[x]), 700.732f, 490.276f, 0); // ItemCode
@@ -213,13 +208,7 @@ namespace PH_Version_1._0
                     image2.SetAbsolutePosition(710.732f, 525.276f); // posicion de la imagen (x,y);
                     doc.Add(image1);
                     doc.Add(image2);
-                    bandera = "2";
-
-                    if (bandera == "2") // cambiar valor dinamico
-                    {
-                        x = 200;
-                    }
-
+                
                     // 3
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[x]), 260.000f, 100.000f, 0); // ItemCode
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[x]), 141.732f, 100.000f, 0); // ItemName
@@ -235,12 +224,6 @@ namespace PH_Version_1._0
                     image2.SetAbsolutePosition(250.000f, 100.000f); // posicion de la imagen (x,y);
                     doc.Add(image1);
                     doc.Add(image2);
-                    bandera = "3";
-
-                    if (bandera == "3") // cambiar valor dinamico
-                    {
-                        x = 300;
-                    }
 
                     // 4
                     ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[x]), 700.732f, 100.000f, 0); // ItemCode
@@ -258,12 +241,6 @@ namespace PH_Version_1._0
                     doc.Add(image1);
                     doc.Add(image2);
                     reciduo = reciduo - 4;
-                    bandera = "4";
-
-                    if (bandera == "4") // cambiar valor dinamico
-                    {
-                        x = 300;
-                    }
                 }
                 else if (reciduo == 3)
                 {
