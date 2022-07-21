@@ -7,7 +7,6 @@ using System.Data.SqlClient;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 
-
 namespace PH_Version_1._0
 {
     public partial class Form2 : Form
@@ -87,9 +86,7 @@ namespace PH_Version_1._0
                     hs = selectedRowCount;
                 }
             }
-
            
-            MessageBox.Show(""+hs);
             //-------CARPETA PARA EL ARCHIVO HABLADORES:
             string path01 = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\TI.DAKA-HABALDORES\";
             string dt = DateTime.Now.ToString("dd -MM-yyyy H-mm-ss"); // obtener fecha actual
@@ -150,30 +147,14 @@ namespace PH_Version_1._0
                     }
                 }
             }
-
-            // lograr cambiar el valor dinamicamente de x desde una lista
-
-            //int i = 0;
-            //foreach (var valor in lista_dinamica)
-            //{
-                //if (bandera == "")
-                //{
-                    //x = valor[i];
-                    //bandera = "1";
-                //}
-
-                //if (bandera == "1")
-                //{
-                    //x = valor[i];
-                    //bandera = "2";
-                //}
-                //i++;
-            //}
-
             // ESCRITURA INTELIGENTE SEGÚN EL NÚMERO DE PAGINAS Y HABLADORES
             decimal reciduo = hs;
-
-            int contador = 0, n1=0;
+            int contador = 0, n1 = 0;
+            
+            if (hs == 3)
+            {
+                contador = 4;
+            }
 
             while (vuelta > 0)
             {
@@ -188,12 +169,12 @@ namespace PH_Version_1._0
                                 break; // imprimio muchos
                             }
 
-                            n1 = int.Parse(valor);
-                            MessageBox.Show("" + n1);
+                            n1 = int.Parse(valor); // valor reinicia su ciclo
+                            MessageBox.Show(""+n1);
                         }
 
                         // 1 esto esta hecho para una sola vuelta
-                        if (contador < 1)
+                        if (contador == 0)
                         {
                             doc.NewPage();
                             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 260.000f, 490.276f, 0); // ItemCode
@@ -223,7 +204,7 @@ namespace PH_Version_1._0
                             MessageBox.Show("" + n1);
                         }
 
-                        if (contador < 2)
+                        if (contador == 1)
                         {
                             // 2
                             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 700.732f, 490.276f, 0); // ItemCode
@@ -253,7 +234,7 @@ namespace PH_Version_1._0
                             MessageBox.Show("" + n1);
                         }
 
-                        if (contador < 3)
+                        if (contador == 2)
                         {
                             // 3
                             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 260.000f, 100.000f, 0); // ItemCode
@@ -283,7 +264,7 @@ namespace PH_Version_1._0
                             MessageBox.Show("" + n1);
                         }
 
-                        if (contador < 4)
+                        if (contador == 3)
                         {
                             // 4
                             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 700.732f, 100.000f, 0); // ItemCode
@@ -306,63 +287,118 @@ namespace PH_Version_1._0
                         {
                             break;
                         }
-
                         contador++;
                     }
                     reciduo = reciduo - 4;
-                    contador = 0;
+                   
+                   contador = 0;
+
                 }
-                else if (reciduo == 3)
+                else if (reciduo == 3) // respuesta encontrada
                 {
-                    // 1
-                    doc.NewPage();
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 260.000f, 490.276f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[n1]), 141.732f, 549.000f, 0); // ItemName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 200.000f, 425.197f, 0); // D_K.Garantía
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 141.732f, 566.929f, 0); // FirmName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"), 70f, 470f, 0); // price1 
-                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
-                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
-                    image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
+                  
+                    foreach (var valor in lista_dinamica)
+                    {
+                        if (contador == 4)
+                        {
+                            if (valor is null)
+                            {
+                                break; // imprimio muchos
+                            }
 
-                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
-                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
-                    image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
-                    doc.Add(image1);
-                    doc.Add(image2);
+                            n1 = int.Parse(valor);
+                            MessageBox.Show("" + n1);
+                        }
 
-                    // 2
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 700.732f, 490.276f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[n1]), 630.732f, 549.000f, 0); // ItemName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 650.000f, 425.197f, 0); // D_K.Garantía
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 630.732f, 566.929f, 0); // FirmName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 510f, 470f, 0); // price1
-                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
-                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
-                    image1.SetAbsolutePosition(650.732f, 455.276f); // posicion de la imagen (x,y);
+                        // 1 esto esta hecho para una sola vuelta
+                        if (contador == 4)
+                        {
+                            doc.NewPage();
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 260.000f, 490.276f, 0); // ItemCode
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[n1]), 141.732f, 549.000f, 0); // ItemName
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 200.000f, 425.197f, 0); // D_K.Garantía
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 141.732f, 566.929f, 0); // FirmName
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"), 70f, 470f, 0); // price1 
+                            image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                            image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                            image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
 
-                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
-                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
-                    image2.SetAbsolutePosition(710.732f, 525.276f); // posicion de la imagen (x,y);
-                    doc.Add(image1);
-                    doc.Add(image2);
+                            image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                            image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                            image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
+                            doc.Add(image1);
+                            doc.Add(image2);
+                        }
 
-                    // 3
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 260.000f, 100.000f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[n1]), 141.732f, 100.000f, 0); // ItemName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 200.000f, 100.000f, 0); // D_K.Garantía
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 141.732f, 100.000f, 0); // FirmName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"), 70f, 100f, 0); // price1
-                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
-                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
-                    image1.SetAbsolutePosition(200.000f, 100.000f); // posicion de la imagen (x,y);
+                        if (contador == 5)
+                        {
+                            if (valor is null)
+                            {
+                                break; // imprimio muchos
+                            }
 
-                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
-                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
-                    image2.SetAbsolutePosition(250.000f, 100.000f); // posicion de la imagen (x,y);
-                    doc.Add(image1);
-                    doc.Add(image2);
+                            n1 = int.Parse(valor);
+                            MessageBox.Show("" + n1);
+                        }
+
+                        if (contador == 5)
+                        {
+                            // 2
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 700.732f, 490.276f, 0); // ItemCode
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[n1]), 630.732f, 549.000f, 0); // ItemName
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 650.000f, 425.197f, 0); // D_K.Garantía
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 630.732f, 566.929f, 0); // FirmName
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"), 510f, 470f, 0); // price1
+                            image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                            image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                            image1.SetAbsolutePosition(650.732f, 455.276f); // posicion de la imagen (x,y);
+
+                            image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                            image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                            image2.SetAbsolutePosition(710.732f, 525.276f); // posicion de la imagen (x,y);
+                            doc.Add(image1);
+                            doc.Add(image2);
+                        }
+
+                        if (contador == 6)
+                        {
+                            if (valor is null)
+                            {
+                                break; // imprimio muchos
+                            }
+
+                            n1 = int.Parse(valor);
+                            MessageBox.Show("" + n1);
+                        }
+
+                        if (contador == 6)
+                        {
+                            // 3
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 260.000f, 100.000f, 0); // ItemCode
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[n1]), 141.732f, 100.000f, 0); // ItemName
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 200.000f, 100.000f, 0); // D_K.Garantía
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 141.732f, 100.000f, 0); // FirmName
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 70f, 100f, 0); // price1
+                            image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                            image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                            image1.SetAbsolutePosition(200.000f, 100.000f); // posicion de la imagen (x,y);
+
+                            image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                            image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                            image2.SetAbsolutePosition(250.000f, 100.000f); // posicion de la imagen (x,y);
+                            doc.Add(image1);
+                            doc.Add(image2);
+                        }
+
+                        if (contador == 7)
+                        {
+                            break;
+                        }
+                       contador++;
+                    }
                     reciduo = reciduo - 3;
+                    MessageBox.Show("Contador fila #3 vale: " + contador);
+                    contador = 0;
                 }
                 else if (reciduo == 2)
                 {
@@ -411,7 +447,7 @@ namespace PH_Version_1._0
                             MessageBox.Show("" + n1);
                         }
 
-                        if (contador == 2)
+                        if (contador == 1)
                         {
                             // 2
                             ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 700.732f, 490.276f, 0); // ItemCode
@@ -433,34 +469,58 @@ namespace PH_Version_1._0
                         if (contador == 2)
                         {
                             break;
-                           
-                        }
 
-                       contador++;
+                        }
+                        contador++;
                     }
 
                     reciduo = reciduo - 4;
-                    contador = 0;
+                    //contador = 0;
                 }
                 else if (reciduo > 0 && reciduo <= 1)
                 {
-                    // 1
-                    doc.NewPage();
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 260.000f, 490.276f, 0); // ItemCode
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[n1]), 141.732f, 549.000f, 0); // ItemName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 200.000f, 425.197f, 0); // D_K.Garantía
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 141.732f, 566.929f, 0); // FirmName
-                    ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"), 70f, 470f, 0); // price1 
-                    image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
-                    image1.ScaleAbsoluteHeight(30); // alto de la imagen;
-                    image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
+                    foreach (var valor in lista_dinamica)
+                    {
+                        if (contador == 5)
+                        {
+                            if (valor is null)
+                            {
+                                break; // imprimio muchos
+                            }
 
-                    image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
-                    image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
-                    image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
-                    doc.Add(image1);
-                    doc.Add(image2);
+                            n1 = int.Parse(valor);
+                            MessageBox.Show("" + n1);
+                        }
+
+                        // 1 esto esta hecho para una sola vuelta
+                        if (contador == 5)
+                        {
+                            doc.NewPage();
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna00[n1]), 260.000f, 490.276f, 0); // ItemCode
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(columna01[n1]), 141.732f, 549.000f, 0); // ItemName
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 200.000f, 425.197f, 0); // D_K.Garantía
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase(""), 141.732f, 566.929f, 0); // FirmName
+                            ColumnText.ShowTextAligned(writer.DirectContent, Element.ALIGN_CENTER, new Phrase("$"), 70f, 470f, 0); // price1 
+                            image1.ScaleAbsoluteWidth(130); // ancho de la imagen;
+                            image1.ScaleAbsoluteHeight(30); // alto de la imagen;
+                            image1.SetAbsolutePosition(200.000f, 455.276f); // posicion de la imagen (x,y);
+
+                            image2.ScaleAbsoluteWidth(68.0315f); // ancho de la imagen;
+                            image2.ScaleAbsoluteHeight(56.6929f); // alto de la imagen;
+                            image2.SetAbsolutePosition(250.000f, 525.276f); // posicion de la imagen (x,y);
+                            doc.Add(image1);
+                            doc.Add(image2);
+                        }
+
+                        if (contador == 6)
+                        {
+                            break;
+                        }
+
+                        contador++;
+                    }
                     reciduo = reciduo - 1;
+                    contador = 0;
                 }
                 else if (reciduo < 0)
                 {
@@ -469,7 +529,7 @@ namespace PH_Version_1._0
                 vuelta--;
             }
             doc.Close();
-            MessageBox.Show("Terminado");
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
